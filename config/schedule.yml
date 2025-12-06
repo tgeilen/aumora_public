@@ -1,0 +1,35 @@
+# Sidekiq-cron schedule configuration
+# Format: 'name': { 'cron': 'cron_expression', 'class': 'JobClassName' }
+
+# Keep-alive job - runs every 25 minutes to prevent Eco dyno from sleeping
+keep_alive:
+  cron: '*/25 * * * *'
+  class: 'KeepAliveJob'
+  description: 'Keep worker dyno awake (runs every 25 minutes)'
+
+
+# ETF sync job - runs daily at 6 AM UTC (adjust timezone as needed)
+etf_sync_daily:
+  cron: '0 4 * * *'
+  class: 'ScheduledEtfSyncJob'
+  description: 'Daily ETF composition sync from iShares'
+
+# Alternative schedules (uncomment the one you prefer):
+
+# Run every weekday at 6 AM UTC
+# etf_sync_weekdays:
+#   cron: '0 6 * * 1-5'
+#   class: 'ScheduledEtfSyncJob'
+#   description: 'Weekday ETF composition sync from iShares'
+
+# Run twice daily at 6 AM and 6 PM UTC
+# etf_sync_twice_daily:
+#   cron: '0 6,18 * * *'
+#   class: 'ScheduledEtfSyncJob'
+#   description: 'Twice daily ETF composition sync from iShares'
+
+# Run weekly on Sundays at 6 AM UTC
+# etf_sync_weekly:
+#   cron: '0 6 * * 0'
+#   class: 'ScheduledEtfSyncJob'
+#   description: 'Weekly ETF composition sync from iShares' 

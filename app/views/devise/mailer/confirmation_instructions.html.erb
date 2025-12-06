@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirm Your Email - Aumora</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo {
+      max-width: 60%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c7c57;
+      margin-bottom: 10px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #2c7c57;
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      margin: 20px 0;
+    }
+    .button:hover {
+      background-color: #216543;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <%= image_tag attachments['logo-green-nobg.png'].url, alt: 'Aumora Logo', class: 'logo' %>
+      <h1>Welcome to Aumora!</h1>
+    </div>
+    
+    <p>Hello <%= @email %>,</p>
+    
+    <p>Thank you for signing up for Aumora! To complete your registration and start managing your investment portfolio, please confirm your email address by clicking the button below:</p>
+    
+    <div style="text-align: center;">
+      <a href="<%= Rails.application.config.frontend_url %>/confirm-email?confirmation_token=<%= @token %>" class="button">
+        Confirm My Email Address
+      </a>
+    </div>
+    
+    <p>If the button above doesn't work, you can also copy and paste this link into your browser:</p>
+    <p style="word-break: break-all; color: #666; font-size: 14px;">
+      <%= Rails.application.config.frontend_url %>/confirm-email?confirmation_token=<%= @token %>
+    </p>
+    
+    <p>This confirmation link will expire in 3 days for security reasons.</p>
+    
+    <div class="footer">
+      <p>If you didn't create an account with Aumora, please ignore this email.</p>
+      <p>Best regards,<br>The Aumora Team</p>
+    </div>
+  </div>
+</body>
+</html>
